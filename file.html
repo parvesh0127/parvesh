@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Clarity | Your Financial Advisor</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #111827;
+      --card: rgba(255, 255, 255, 0.08);
+      --card2: rgba(255, 255, 255, 0.12);
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent2: #22c55e;
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.20), transparent 30%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.16), transparent 25%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      font-size: 1.1rem;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .hero {
+      padding: 86px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .highlight {
+      color: var(--accent);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #0ea5e9);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(56, 189, 248, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .quote-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .quote-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .quote {
+      font-size: 1.05rem;
+      color: #f8fafc;
+      margin-bottom: 16px;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .mini {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .about-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .panel ul {
+      margin-top: 12px;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .panel li {
+      margin-bottom: 10px;
+    }
+
+    .form-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #f8fafc;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #94a3b8;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(56, 189, 248, 0.8);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .success {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      color: #bbf7d0;
+      font-size: 0.95rem;
+    }
+
+    .error {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      color: #fecaca;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards,
+      .about-box,
+      .form-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .cta-row {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Financial <span>Clarity</span></div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Helping people build calmer, stronger finances</div>
+          <h1>Take control of your money and build a <span class="highlight">better future</span>.</h1>
+          <p class="lead">
+            I help individuals and families get organized, reduce stress, and create a financial plan that actually works for their real life.
+            If you want clarity, confidence, and a step-by-step path forward, you are in the right place.
+          </p>
+
+          <div class="cta-row">
+            <a href="#contact" class="btn btn-primary">Book a Free Consultation</a>
+            <a href="#services" class="btn btn-secondary">See How I Help</a>
+          </div>
+
+          <p class="note">"A budget is telling your money where to go instead of wondering where it went."</p>
+        </div>
+
+        <div class="quote-card">
+          <h3>Words to inspire your journey</h3>
+          <p class="quote">
+            "Small steps every day lead to big results over time."
+            <small>Progress is better than perfection.</small>
+          </p>
+          <p class="quote">
+            "Financial peace is not the acquisition of stuff. It is learning to live on less than you make."
+            <small>— Dave Ramsey</small>
+          </p>
+          <p class="quote">
+            "Do not save what is left after spending, but spend what is left after saving."
+            <small>— Warren Buffett</small>
+          </p>
+          <div class="mini">
+            Clear guidance. Practical support. A plan built around your goals.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">How I can help</h2>
+        <p class="section-subtitle">
+          Whether you're trying to get out of debt, save more, or simply understand where your money is going, I'll help you create a plan that feels manageable and effective.
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Budget planning</h3>
+            <p>Create a practical monthly budget that supports your lifestyle and goals.</p>
+          </div>
+          <div class="card">
+            <h3>Debt strategy</h3>
+            <p>Build a simple action plan to reduce debt and free up cash flow.</p>
+          </div>
+          <div class="card">
+            <h3>Saving & investing</h3>
+            <p>Set up habits and strategies for emergency savings, retirement, and long-term growth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About me</h2>
+        <p class="section-subtitle">
+          I work with people who want honest guidance, clear steps, and a supportive approach to financial improvement.
+        </p>
+
+        <div class="about-box">
+          <div class="panel">
+            <h3>My approach</h3>
+            <ul>
+              <li>Simple, easy-to-understand financial guidance</li>
+              <li>Customized support based on your situation</li>
+              <li>Focus on practical action, not confusing jargon</li>
+              <li>Respectful and judgment-free conversations</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>What you can expect</h3>
+            <ul>
+              <li>A clear review of your current financial picture</li>
+              <li>Ideas to improve savings, spending, and debt habits</li>
+              <li>Next steps you can follow immediately</li>
+              <li>Support by email after you send your details</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Send your details</h2>
+        <p class="section-subtitle">
+          Fill out the form below and I'll get back to you by email.
+        </p>
+
+        <div class="form-wrap">
+          <div class="panel">
+            <h3>Let's get started</h3>
+            <p class="section-subtitle" style="margin-bottom: 0;">
+              Share a few details about your situation so I can understand how to help you best.
+            </p>
+            <div class="mini" style="margin-top: 22px;">
+              Form submissions will be sent directly to your email via Formspree.
+            </div>
+          </div>
+
+          <form id="contact-form">
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required data-fs-field />
+            </div>
+
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="Your email address" required data-fs-field />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Your phone number" data-fs-field />
+            </div>
+
+            <div class="field">
+              <label for="goal">Main Financial Goal</label>
+              <select id="goal" name="goal" required data-fs-field>
+                <option value="">Select one</option>
+                <option value="Budgeting help">Budgeting help</option>
+                <option value="Debt reduction">Debt reduction</option>
+                <option value="Saving more money">Saving more money</option>
+                <option value="Investing guidance">Investing guidance</option>
+                <option value="General financial planning">General financial planning</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="message">Tell me about your situation</label>
+              <textarea id="message" name="message" placeholder="Share anything you'd like me to know..." required data-fs-field></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;" data-fs-submit-btn>Submit Information</button>
+            
+            <div class="success" id="successMsg" data-fs-success>
+              ✅ Thank you! Your information has been submitted successfully. I'll get back to you by email within 24 hours.
+            </div>
+            
+            <div class="error" id="errorMsg" data-fs-error>
+              ❌ There was an error submitting your form. Please try again or email me directly.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© 2026 Financial Clarity. All rights reserved.</div>
+      <div class="footer-links">
+        <span>Professional Financial Guidance</span>
+        <span>•</span>
+        <span>Support by Email</span>
+        <span>•</span>
+        <span>Simple. Clear. Practical.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Formspree AJAX Integration -->
+  <script>
+    window.formspree = window.formspree || function () { 
+      (formspree.q = formspree.q || []).push(arguments); 
+    };
+    formspree('initForm', { 
+      formElement: '#contact-form', 
+      formId: 'xkoknrko' 
+    });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+</body>
+</html>
